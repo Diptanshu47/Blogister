@@ -1,0 +1,226 @@
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    background-color: #44444c;
+}
+
+.navbar-default .navbar-brand{
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: #fff;
+}
+
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+
+.footer-padding {
+	padding-bottom: 60px;
+}
+
+.footer {
+	position: fixed;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #D6d6d6;
+}
+
+.footer p {
+	margin-top: 25px;
+	font-size: 12px;
+    color: black;
+}
+
+.compose{
+    position: fixed;
+    right: 12.5%;
+    bottom: 10%;
+}
+
+.button{
+    width: 175px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #44444c;
+    color: #fff;
+}
+
+.button:hover{
+    background-color:black;
+    color: white;
+}
+
+.crud{
+    float: left;
+    margin: 10px 15px 0 0;
+}
+
+.crud-button{
+    width: 100px;
+}
+
+.deletestuff{
+    margin: 20%;
+    font-size: 30px;
+    text-align: center;
+}
+
+.errorinnew{
+    margin: 7.5%;
+    color: red;
+}
+
+.date{
+    margin: 15px 0 20px 0;
+    color: grey;
+}
+
+.author{
+    color: grey;
+    margin: 15px 0;
+}
+
+.content{
+    font-size: 16px;
+}
+
+.single-tag{
+    text-align: center;
+    border: solid skyblue 2px;
+    float: left;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.tags{
+    position:absolute;
+    bottom: 25.2%;
+    margin-left: 10px;
+    z-index: 1000;
+}
+
+.intags{
+    position: relative;
+}
+
+.intags textarea{
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.taged{
+    box-shadow: none;
+    -webkit-box-shadow : none;
+    height: 50px;
+    padding-left: 0px;
+    border: none;
+}
+
+.taggers button{
+    float: left;
+    border: solid 3px skyblue;
+    padding: 5px;
+    margin-right: 5px;
+    margin-top: 8.5px;
+    border-radius: 10px;
+}
+
+.taggers{
+    min-height: 75px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.homecontent{
+    clear: left;
+}
+
+.tagmore a{
+    position: absolute;
+    top: 112px;
+    font-size: 20px;
+}
+
+.links{
+    display: flex;
+    font-size: 35px;
+}
+
+.loader{
+    margin: 15% 45%;
+}
+
+/********************************Media Queries************************************/
+@media(min-width : 300px) and (max-width : 760px){
+    body{
+        font-size: 15px;
+    }
+    
+    .tagmore a{
+        position: static;
+        margin: 45px;
+    }
+
+    .compose{
+        text-align: center;
+        position: static;
+        margin: auto;
+        padding: 25px;
+        margin-top: 30px;
+    }
+
+    .crud{
+        margin-bottom: 20px;
+    }
+
+    .intags textarea{
+        padding-bottom: 75px;
+    }
+
+    .loader{
+        margin-left: 38%;
+    }
+
+    .homecontent{
+        font-size: 15px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+
+    .taggers button{
+        margin: 5px;
+    }
+
+    #home{
+        float: left;
+    }
+
+    #trending{
+        float: left;
+    }
+
+    #saved{
+        float: left;
+        width: 132.5px;
+        height: 40px;
+    }
+
+    .nav{
+        margin-left: 10%;
+    }
+}

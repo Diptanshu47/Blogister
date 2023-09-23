@@ -1,0 +1,73 @@
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    background-color: #44444c;
+}
+
+.navbar-default .navbar-brand{
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: #fff;
+}
+
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+
+.footer-padding {
+	padding-bottom: 60px;
+}
+
+.footer {
+	position: fixed;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #D6d6d6;
+}
+
+.footer p {
+	margin-top: 25px;
+	font-size: 12px;
+    color: black;
+}
+
+.compose{
+    position: fixed;
+    right: 12.5%;
+    bottom: 10%;
+}
+
+.button{
+    width: 175px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #44444c;
+    color: #fff;
+}
+
+.button:hover{
+    background-color:black;
+}
+
+.crud{
+    float: left;
+    margin: 10px 15px 0 0;
+}
+
+.crud-button{
+    width: 100px;
+}

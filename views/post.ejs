@@ -1,0 +1,16 @@
+<%-include('partials/header'); %>
+        <h1><%= title %></h1>
+        <p><%= content %></p>
+
+        <div class="crud">
+                <a href="/edit/posts/<%= id%>"><button class="crud-button btn btn-primary">Edit</button></a>
+        </div>
+        <div class="crud">
+                <a href="/posts/delete/<%= id%>"><button class="crud-button btn btn-primary">Delete</button></a>
+        </div>
+
+        <div class="compose">
+                <a href="/compose"><button class="btn btn-primary button">📝 Compose</button></a>
+        </div>
+
+<%-include('partials/footer'); %>
