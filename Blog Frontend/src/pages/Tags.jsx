@@ -1,17 +1,20 @@
 import React, { useState , useEffect } from 'react'
-import axios from "axios";
-import ComposeButton from '../components/ComposeButton'
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useSnackbar } from 'notistack';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
+import ComposeButton from '../components/ComposeButton'
 import Loading from '../components/Loading';
 
 function Tags() {
+  const port = import.meta.env.VITE_Host_id 
   
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [arr,setarr] = useState([]);
-  const [loading,setloading] = useState(0)
+  const [loading,setloading] = useState(0);
+  const [error,seterror] = useState('')
 
   useEffect(()=>{
     setloading(1)
@@ -22,7 +25,7 @@ function Tags() {
 
 
   useEffect(()=>{
-    axios.get('http://localhost:1500/posts')
+    axios.get(`${port}/posts`)
     .then(async(data)=>{
       const array = [];
       data.data.map((a)=>{
@@ -34,10 +37,9 @@ function Tags() {
       const uniqueArray = Array.from(new Set(array));
       uniqueArray.sort()
       setarr(uniqueArray)
-
     }).catch((err)=>{
       seterror(err.message);
-      enqueueSnackbar(err.message+' Cannot Fetch Posts',{ variant: 'error' })
+      enqueueSnackbar(err.message+' Cannot Fetch Tags',{ variant: 'error' })
     })
   },[]);
 
@@ -45,6 +47,10 @@ function Tags() {
   return (
     <div>
       {
+      error != "" ? <h2 className='errormsg'>{error+' Cannot Fetch Tags'}</h2>
+      :
+      <div>
+        {
         loading ?
         <Loading loading={loading} />
         :
@@ -60,7 +66,9 @@ function Tags() {
           }
           <ComposeButton />
         </div>
-      }
+        }
+      </div>
+      }   
     </div>
   )
 }

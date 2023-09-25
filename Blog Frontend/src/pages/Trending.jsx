@@ -8,6 +8,7 @@ import axios from "axios";
 import Loading from '../components/Loading';
 
 function Trending() {
+  const port = import.meta.env.VITE_Host_id 
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [datas,setdatas] = useState([]);
@@ -21,10 +22,9 @@ function Trending() {
   },[])
 
   useEffect(()=>{
-    axios.get('http://localhost:1500/posts')
+    axios.get(`${port}/posts`)
     .then((data)=>{
       setdatas(data.data)
-
       function randomNum(min, max) { 
         var n = []; 
         for(var i=0;i<4;i++){ 
@@ -32,14 +32,13 @@ function Trending() {
         }
         for(let i=0;i<4;i++){
           data.data.splice(n[i],1)
-          console.log(n[i]);
+          // console.log(n[i]);
         }
       }
       randomNum(0,8);
       setdatas(data.data)
-
     }).catch((err)=>{
-      enqueueSnackbar(err.message+' Cannot Fetch Posts',{ variant: 'error' })
+      enqueueSnackbar(err.message+' Cannot Fetch Trending posts',{ variant: 'error' })
     })
   },[])
 
@@ -52,7 +51,7 @@ function Trending() {
             <TrendingUpIcon sx={{ fontSize: 50 }}/>
             {
               datas.map((e,index)=>{
-                console.log(datas);
+                // console.log(datas);
                 return(
                   <Link  className='links' to={`/posts/${e._id}`} key={index}>{index+1}. {e.name}</Link>
                 )

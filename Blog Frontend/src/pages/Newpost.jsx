@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { useSnackbar } from 'notistack';
 import axios from "axios";
+import { useSnackbar } from 'notistack';
 import CloseIcon from '@mui/icons-material/Close';
 
 function Compose() {
+  const port = import.meta.env.VITE_Host_id 
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const [name,setname] = useState('');
@@ -63,9 +64,7 @@ function Compose() {
 
   const handlesubmit = (event)=>{
       event.preventDefault();
-      console.log(blog);
-      console.log(tags);
-      axios.post("http://localhost:1500/new",blog)
+      axios.post(`${port}/new`,blog)
       .then(()=>{
         enqueueSnackbar('Succesfully Created a new Post',{ variant: 'success' })
         navigate("/");
@@ -123,7 +122,6 @@ function Compose() {
                 />
             </div>
 
-
             <div className="tags">
               {tags.map((tag, index) => (
                   <div className="single-tag" key={index}>
@@ -143,7 +141,7 @@ function Compose() {
                   type="text"  
                   name="tags" 
                   onKeyDown={event => handleTags(event)}
-                  placeholder='Enter Your Tags Here'
+                  placeholder='Enter Your Tags Here and Press enter to save tag'
                   default
                 />
             </div>

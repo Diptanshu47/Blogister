@@ -2,11 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-
-import ComposeButton from '../components/ComposeButton';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
+import ComposeButton from '../components/ComposeButton';
+
 function Params() {
+  const port = import.meta.env.VITE_Host_id 
 
   const {id} = useParams();
   const [content,setcontent] = useState('');
@@ -14,7 +15,7 @@ function Params() {
   const [tags,settags] = useState([]);
 
   useEffect(()=>{
-    axios.get(`http://localhost:1500/posts/${id}`)
+    axios.get(`${port}/posts/${id}`)
     .then((data)=>{
         setcontent(data.data[0]);
         settags(data.data[0].tags);

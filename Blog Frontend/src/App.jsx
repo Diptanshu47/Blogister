@@ -1,22 +1,24 @@
 import { React, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { useSnackbar } from 'notistack';
 import axios from "axios";
-
-import ComposeButton from './components/ComposeButton';
+import { useSnackbar } from 'notistack';
+import CloseIcon from '@mui/icons-material/Close';
 import ExploreIcon from '@mui/icons-material/Explore';
 
+import ComposeButton from './components/ComposeButton';
 import Loading from './components/Loading';
 
 function App() {
+  const port = import.meta.env.VITE_Host_id 
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const [datas,setdatas] = useState([]);
   const [error,seterror] = useState("");
   const [arr,setarr] = useState([]);
   
   const [button,setbutton] = useState(0);
-  const [loading,setloading] = useState(0)
+  const [loading,setloading] = useState(0);
+  const [sort,setsort] = useState('');
 
   useEffect(()=>{
     setloading(1)
@@ -26,7 +28,7 @@ function App() {
   },[])
 
   useEffect(()=>{
-    axios.get('http://localhost:1500/posts')
+    axios.get(`${port}/posts`)
     .then((data)=>{
       {button==0 && setdatas(data.data)};
       const array = [];
@@ -38,19 +40,17 @@ function App() {
       })
       const uniqueArray = Array.from(new Set(array));
       setarr(uniqueArray)
-
     }).catch((err)=>{
       seterror(err.message);
       enqueueSnackbar(err.message+' Cannot Fetch Posts',{ variant: 'error' })
     })
   },[button]);
 
-
   function handlebutton(tag){
-    document.getElementById(tag.target.id).style.backgroundColor = "skyblue";
-    axios.get(`http://localhost:1500/posts/tags/${tag.target.name}`)
+    setsort(tag.target.name);
+    axios.get(`${port}/posts/tags/${tag.target.name}`)
     .then((data)=>{
-      {button && setdatas(data.data)}
+      setdatas(data.data)
     }).catch((err)=>{
       seterror(err.message);
       enqueueSnackbar(err.message+' Cannot Fetch Posts',{ variant: 'error' })
@@ -59,7 +59,6 @@ function App() {
 
   return (
     <div>
-      {error != "" && <h2>{error+' Cannot Fetch Posts'}</h2>}
       {
         loading ? 
         <Loading loading={loading}/>
@@ -68,23 +67,31 @@ function App() {
           <div className='taggers'>
           <p onClick={()=>{setbutton(0)}} style={{marginRight : '6.5px',border : "none",float:'left'}}><ExploreIcon sx={{ fontSize: 50 }}/></p>
             {
-              arr.slice(0, 9).map((data,index)=>{
-                return (
-                  <button 
-                  name={data} 
-                  key={index}
-                  id={data}
-                  style={ button ? {backgroundColor : "none"} : null} 
-                  onClick={(e)=>{setbutton(1),handlebutton(e)}} 
-                  >
-                    {data}
-                  </button>
-                )
-              })
-            }
-            <div className='tagmore'>
-              <Link to={'/tags'}>...More-Tags</Link>
-            </div>
+              button ?
+              <div>
+                <p className='sort'>{sort}<CloseIcon className='sorted' onClick={()=>{setbutton(0)}} /></p>
+              </div>
+              :
+              <div>
+                {
+                  arr.slice(0, 9).map((data,index)=>{
+                    return (
+                      <button 
+                      name={data} 
+                      key={index}
+                      id={data} 
+                      onClick={(e)=>{setbutton(1),handlebutton(e)}} 
+                      >
+                        {data}
+                      </button>
+                    )
+                  })
+                }
+              </div>
+              }
+              <div className='tagmore'>
+                <Link to={'/tags'}>...More-Tags</Link>
+              </div>
             </div>
             {
               datas.map((ans)=>{
@@ -104,6 +111,7 @@ function App() {
             <ComposeButton />
         </div>
       }
+      {error != "" && <h2 className='errormsg'>{error+' Cannot Fetch Posts'}</h2>}
     </div>
   )
 }

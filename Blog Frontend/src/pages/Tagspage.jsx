@@ -1,12 +1,14 @@
 import React, { useState , useEffect } from 'react'
+import { useParams,Link } from "react-router-dom";
 import axios from "axios";
-import ComposeButton from '../components/ComposeButton'
-import { useNavigate, useParams,Link } from "react-router-dom";
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useSnackbar } from 'notistack';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
+import ComposeButton from '../components/ComposeButton'
 import Loading from '../components/Loading';
 
 function Tagspage() {
+  const port = import.meta.env.VITE_Host_id 
 
   const {id} = useParams();
   const [datas,setdatas] = useState([]);
@@ -19,13 +21,12 @@ function Tagspage() {
     }, 500);
   },[])
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(()=>{
-    axios.get(`http://localhost:1500/posts/tags/${id}`)
+    axios.get(`${port}/posts/tags/${id}`)
     .then((data)=>{
       setdatas(data.data)
-      console.log(data.data);
     }).catch((err)=>{
       enqueueSnackbar(err.message+' Cannot Fetch Posts',{ variant: 'error' })
     })

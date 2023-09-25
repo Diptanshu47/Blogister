@@ -1,12 +1,12 @@
 import { React, useState , useEffect } from 'react'
 import { useParams,useNavigate } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
 import axios from "axios";
-
+import { useSnackbar } from 'notistack';
 import CloseIcon from '@mui/icons-material/Close';
 
 
 function Edit() {
+  const port = import.meta.env.VITE_Host_id 
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function Edit() {
   const [tags,settags] = useState([]);
 
   useEffect(()=>{
-    axios.get(`http://localhost:1500/posts/${id}`)
+    axios.get(`${port}/posts/${id}`)
     .then((data)=>{
       setobj(data.data[0]);
       settags(data.data[0].tags)
@@ -28,7 +28,6 @@ function Edit() {
 
   useEffect(()=>{
     setobj({...obj,tags : tags});
-    console.log(tags);
   },[tags]);
 
 
@@ -61,8 +60,7 @@ function Edit() {
 
 
   function handleedit(){
-    console.log(tags);
-    axios.patch(`http://localhost:1500/edit/posts/${id}`,obj)
+    axios.patch(`${port}/edit/posts/${id}`,obj)
     .then(()=>{
       enqueueSnackbar('Succesfully Edited the Post',{ variant: 'success' })
       navigate("/");

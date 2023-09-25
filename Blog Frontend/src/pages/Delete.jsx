@@ -1,17 +1,17 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import { useSnackbar } from 'notistack';
 import axios from "axios";
 
 function Delete() {
+  const port = import.meta.env.VITE_Host_id 
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const {id} = useParams();
   const navigate = useNavigate();
 
   useEffect(()=>{
-    axios.delete(`http://localhost:1500/posts/${id}`)
+    axios.delete(`${port}/posts/${id}`)
     .then(()=>{
       enqueueSnackbar('Succesfully Deleted The Post',{ variant: 'success' })
       navigate("/");
@@ -22,7 +22,7 @@ function Delete() {
   },[]);
 
   return (
-    <div></div>
+    <div>Deleted</div>
   )
 }
 

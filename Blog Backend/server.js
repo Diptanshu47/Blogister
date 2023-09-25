@@ -1,18 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const cors = require('cors')
+const mongoose = require('mongoose');
+require('dotenv').config()
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors()) // Use this after the variable declaration
+app.use(cors())
 
 /*******************************DB************************************/
-
-mongoose.connect('mongodb://127.0.0.1:27017/BlogDB')
+const uri = process.env.URI_KEY;
+mongoose.connect(uri)
 .then(function(){
     console.log("Successfully Connected To DataBase");
 }).catch(function(err) {
