@@ -240,13 +240,19 @@
         float: left;
     }
 
-    #saved{
+    #tags{
         float: left;
         width: 132.5px;
         height: 40px;
     }
 
     .nav{
-        margin-left: 10%;
+        margin: auto;
+        width: 95%;
+    }
+
+    .loader{
+        text-align: center;
+        margin: 25% 30%;
     }
 }
