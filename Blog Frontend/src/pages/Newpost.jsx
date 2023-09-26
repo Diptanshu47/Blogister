@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSnackbar } from 'notistack';
 import CloseIcon from '@mui/icons-material/Close';
+import Header from '../components/Header';
 
 function Compose() {
   const port = import.meta.env.VITE_Host_id 
@@ -79,6 +80,8 @@ function Compose() {
 
   return (
     <div>
+      <Header />
+      <div className='container'>
         <h1>Compose</h1>
         <form>
             <div className="form-group">
@@ -148,6 +151,7 @@ function Compose() {
 
             <button className="btn btn-primary" type="submit" onClick={handlesubmit} >Create</button>
         </form>
+    </div>
     </div>
   )
 }

@@ -162,7 +162,8 @@
 }
 
 .loader{
-    margin: 15% 45%;
+    text-align: center;
+    margin: 15% 47%;
 }
 
 .errormsg{

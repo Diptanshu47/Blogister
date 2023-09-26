@@ -6,6 +6,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 import ComposeButton from '../components/ComposeButton'
 import Loading from '../components/Loading';
+import Header from '../components/Header';
 
 function Tags() {
   const port = import.meta.env.VITE_Host_id 
@@ -46,10 +47,11 @@ function Tags() {
 
   return (
     <div>
+      <Header />
       {
-      error != "" ? <h2 className='errormsg'>{error+' Cannot Fetch Tags'}</h2>
+      error != "" ? <h2 className='errormsg container'>{error+' Cannot Fetch Tags'}</h2>
       :
-      <div>
+      <div className='container'>
         {
         loading ?
         <Loading loading={loading} />

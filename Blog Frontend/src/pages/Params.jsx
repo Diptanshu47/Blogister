@@ -5,6 +5,7 @@ import axios from "axios";
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 import ComposeButton from '../components/ComposeButton';
+import Header from '../components/Header';
 
 function Params() {
   const port = import.meta.env.VITE_Host_id 
@@ -26,10 +27,11 @@ function Params() {
 
   return (
     <div>
+        <Header />
         {
         error == '' 
         ? 
-        <div>
+        <div className='container'>
             <h1>{content.name}</h1>
             <p className='date'>{content.date}</p>
             <p className='content' >{content.content}</p>
@@ -50,7 +52,7 @@ function Params() {
             </div>
         </div>
         : 
-        <div className='deletestuff'>{error}</div>
+        <div className='deletestuff container'>{error}</div>
         }
 
         <ComposeButton />

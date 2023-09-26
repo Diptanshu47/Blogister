@@ -6,6 +6,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 import ComposeButton from '../components/ComposeButton'
 import Loading from '../components/Loading';
+import Header from '../components/Header'
 
 function Tagspage() {
   const port = import.meta.env.VITE_Host_id 
@@ -35,11 +36,12 @@ function Tagspage() {
 
   return (
    <div>
+      <Header />
       {
         loading ?
         <Loading loading={loading}/>
         :
-        <div>
+        <div className='container'>
           <h1><LocalOfferIcon style={{fontSize : "25px"}}/>{id} :</h1>
           {
             datas.map((ans)=>{

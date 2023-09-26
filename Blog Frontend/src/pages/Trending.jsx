@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Loading from '../components/Loading';
+import Header from '../components/Header';
 
 function Trending() {
   const port = import.meta.env.VITE_Host_id 
@@ -44,10 +45,11 @@ function Trending() {
 
   return (
     <div>
+      <Header />
       {loading ? 
           <Loading loading={loading}/>
           :
-          <div>
+          <div  className="container">
             <TrendingUpIcon sx={{ fontSize: 50 }}/>
             {
               datas.map((e,index)=>{

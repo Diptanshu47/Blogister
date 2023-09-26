@@ -3,6 +3,7 @@ import { useParams,useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useSnackbar } from 'notistack';
 import CloseIcon from '@mui/icons-material/Close';
+import Header from '../components/Header';
 
 
 function Edit() {
@@ -71,6 +72,8 @@ function Edit() {
 
   return (
     <div>
+      <Header />
+      <div className='container'>
         <h1>Edit</h1>
         <form>
             <div className="form-group">
@@ -140,6 +143,7 @@ function Edit() {
             </div>
             <button className="btn btn-primary" type="button" onClick={handleedit}>Change</button>
         </form>
+    </div>
     </div>
   )
 }

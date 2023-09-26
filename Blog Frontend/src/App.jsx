@@ -7,6 +7,7 @@ import ExploreIcon from '@mui/icons-material/Explore';
 
 import ComposeButton from './components/ComposeButton';
 import Loading from './components/Loading';
+import Header from './components/Header';
 
 function App() {
   const port = import.meta.env.VITE_Host_id 
@@ -17,15 +18,7 @@ function App() {
   const [arr,setarr] = useState([]);
   
   const [button,setbutton] = useState(0);
-  const [loading,setloading] = useState(0);
   const [sort,setsort] = useState('');
-
-  useEffect(()=>{
-    setloading(1)
-    setTimeout(() => {
-      setloading(0)
-    }, 500);
-  },[])
 
   useEffect(()=>{
     axios.get(`${port}/posts`)
@@ -59,11 +52,13 @@ function App() {
 
   return (
     <div>
+      <Header />
+      {error != "" && <h2 className='errormsg container'>{error+' Cannot Fetch Posts'}</h2>}
       {
-        loading ? 
-        <Loading loading={loading}/>
+        datas=='' ? 
+        error == '' && <Loading loading={datas}/>
         :
-        <div>
+        <div  className="container">
           <div className='taggers'>
           <p onClick={()=>{setbutton(0)}} style={{marginRight : '6.5px',border : "none",float:'left'}}><ExploreIcon sx={{ fontSize: 50 }}/></p>
             {
@@ -111,7 +106,6 @@ function App() {
             <ComposeButton />
         </div>
       }
-      {error != "" && <h2 className='errormsg'>{error+' Cannot Fetch Posts'}</h2>}
     </div>
   )
 }
