@@ -190,6 +190,11 @@
     margin-left: 7.5px;
 }
 
+.custom-toggler{
+    display: none;
+}
+
+
 /********************************Media Queries************************************/
 @media(min-width : 300px) and (max-width : 760px){
     body{
@@ -215,6 +220,7 @@
     }
 
     .intags textarea{
+        position: relative;
         padding-bottom: 75px;
     }
 
@@ -232,27 +238,26 @@
         margin: 5px;
     }
 
-    #home{
-        float: left;
-    }
-
-    #trending{
-        float: left;
-    }
-
-    #tags{
-        float: left;
-        width: 132.5px;
-        height: 40px;
-    }
-
     .nav{
-        margin: auto;
-        width: 95%;
+        text-align: center;
+    }
+
+    .custom-toggler{
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 25px;
+        right: 30px;
+    }
+
+    .navbar-toggler-icon{
+        width: 30px;
+        height: 30px;
+        z-index: 1000;
     }
 
     .loader{
-        text-align: center;
-        margin: 25% 30%;
+        margin: 25% 38.5%;
     }
 }

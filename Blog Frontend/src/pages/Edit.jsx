@@ -119,19 +119,18 @@ function Edit() {
                 />
             </div>
 
-            <div className="tags">
-              {tags.map((tag, index) => (
-                  <div className="single-tag" key={index}>
-                      <span>{tag}</span>
-                      <i onClick={() => removeTags(index)}>
-                          <CloseIcon />
-                      </i>
-                  </div>
-              ))}
-            </div>
-
             <div className="form-group intags">
                 <label className="form-label">Tags</label>
+                <div className="tags">
+                  {tags.map((tag, index) => (
+                      <div className="single-tag" key={index}>
+                          <span>{tag}</span>
+                          <i onClick={() => removeTags(index)}>
+                              <CloseIcon />
+                          </i>
+                      </div>
+                  ))}
+                </div>
                 <textarea 
                   required 
                   className="form-control" 
